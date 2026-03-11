@@ -1,0 +1,131 @@
+run_comment = "1D Spherical, Initial Attempt"
+log_file    = "ws2.log"
+basenm      = "ws2_"
+
+# This particular parfile is used as an example parfile that is
+# described in detail in the users guide.
+
+#./setup -auto WeissSim2 -1d +spherical -nxb=64 +hdf5typeio species=dt,hdc -parfile=flash.par
+
+#########################
+#   OUTPUT PARAMETERS   #
+#########################
+
+### Checkpoint Options  ###
+checkpointFileIntervalTime = 1.0
+checkpointFileIntervalStep = 10
+
+### Plot Options ###
+plotFileNumber       = 0
+plotFileIntervalTime = 1.0e-10
+plot_var_1           = "dens"
+plot_var_2           = "temp"
+plot_var_3           = "pres"
+plot_var_4           = "eint"
+
+### Restart Options ###
+restart              = .false.
+checkpointFileNumber = 0
+
+# Simulation Options
+useOpacity     = .false.
+useDiffuse      = .false.
+useConductivity = .false.
+diff_useEleCond = .false.
+useHeatexchange = .false.
+
+### Material and EOS parameters ###
+eosModeInit = "dens_temp"
+eosMode     = "dens_temp"
+smallt           = 1.0
+smallx           = 1.0e-99
+eos_useLogTables = .false.
+
+############################
+#                          #
+#     HYDRO PARAMETERS     #
+#                          #
+############################
+
+# Use second order hybrid solver with minmod slope limiter. This
+# essentially eliminates any Carbuncle instability.
+ 
+order            = 2         # Interpolation order (first/second/third/fifth order)
+slopeLimiter     = "vanLeer" # Slope limiters (minmod, mc, vanLeer, hybrid, limited)
+LimitedSlopeBeta = 1.        # Slope parameter for the "limited" slope by Toro
+charLimiting     = .true.    # Characteristic limiting vs. Primitive limiting
+use_avisc        = .true.    # use artificial viscosity (originally for PPM)
+cvisc            = 0.1       # coefficient for artificial viscosity
+use_flattening   = .false.   # use flattening (dissipative) (originally for PPM)
+use_steepening   = .false.   # use contact steepening (originally for PPM)
+use_upwindTVD    = .false.   # use upwind biased TVD slope for PPM (need nguard=6)
+RiemannSolver    = "hybrid"  # Roe, HLL, HLLC, LLF, Marquina, hybrid
+entropy          = .false.   # Entropy fix for the Roe solver
+shockDetect      = .false.   # Shock Detect for numerical stability
+addThermalFlux   = .false.
+use_hybridOrder = .true.
+
+
+# Hydro boundary conditions:
+xl_boundary_type = "reflect"
+xr_boundary_type = "outflow"
+
+
+##########################
+#   INITIAL CONDITIONS   #
+##########################
+
+sim_targetIRadius = 950.0e-04
+sim_targetORadius = 1000.0e-04
+
+gamma = 1.6666667
+
+# Target material defaults set for DT Gas at room temperature:
+sim_rhoDTgas  = 0.00045
+sim_teleDTgas = 290.11375
+sim_tionDTgas = 290.11375
+sim_tradDTgas = 290.11375
+
+# Chamber material defaults set for Shell:
+sim_rhoShell  = 3
+sim_teleShell = 290.11375
+sim_tionShell = 290.11375
+sim_tradShell = 290.11375
+
+#######################
+#   TIME PARAMETERS   #
+#######################
+tstep_change_factor = 1.10
+cfl            = 0.4
+dt_diff_factor = 1.0e+100 # Disable diffusion dt
+rt_dtFactor    = 0.02
+hx_dtFactor    = 1.0e+100
+tmax           = 3.0e-09
+dtmin          = 1.0e-16
+dtinit         = 1.0e-15
+dtmax          = 3.0e-09
+nend           = 1000
+
+
+#######################
+#   MESH PARAMETERS   #
+#######################
+
+geometry = "spherical"
+
+# Domain size:
+xmin = 0.0
+xmax = 0.12
+
+# NOFBS options:
+iProcs = 1
+
+iGridSize = 32
+
+# Total number of blocks:
+nblockx = 4
+
+lrefine_max = 3
+refine_var_1 = "dens"
+refine_var_2 = "pres"
+

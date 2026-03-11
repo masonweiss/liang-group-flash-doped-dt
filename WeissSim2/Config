@@ -1,0 +1,49 @@
+# Coniguration file for WeissSim2 simulation
+REQUIRES Driver
+REQUIRES physics/Hydro
+REQUIRES physics/Eos
+
+##########################
+#                        #
+#   RUNTIME PARAMETERS   #
+#                        #
+##########################
+                              
+D sim_targetIRadius The inner radius to use for the target
+PARAMETER sim_targetIRadius REAL 0.095
+
+D sim_targetORadius The outer radius to use for the target
+   PARAMETER sim_targetORadius REAL 0.1
+
+D sim_rhoDTgas Initial DT density
+PARAMETER sim_rhoDTgas  REAL 0.00045
+
+D sim_teleDTgas Initial DT electron temperature
+PARAMETER sim_teleDTgas  REAL 290.11375
+
+D sim_tionDTgas Initial DT ion temperature
+PARAMETER sim_tionDTgas  REAL 290.11375
+
+D sim_tradDTgas Initial DT radiation temperature
+PARAMETER sim_tradDTgas  REAL 290.11375
+
+D sim_rhoShell Initial shell density
+PARAMETER sim_rhoShell  REAL 3.0
+
+D sim_teleShell Initial shell electron temperature
+PARAMETER sim_teleShell  REAL 290.11375
+
+D sim_tionShell Initial shell ion temperature
+PARAMETER sim_tionShell  REAL 290.11375
+
+D sim_tradShell Initial shell radiation temperature
+PARAMETER sim_tradShell  REAL 290.11375
+
+D sim_eosDT chamber EOS type
+PARAMETER sim_eosDT   STRING "eos_gam" 
+
+D sim_eosShell chamber EOS type
+PARAMETER sim_eosShell   STRING "eos_gam" 
+
+D sim_smallX  Tiny species floor to avoid zero mass fractions
+PARAMETER sim_smallX REAL 1.0e-99
